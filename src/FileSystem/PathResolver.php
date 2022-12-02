@@ -9,10 +9,10 @@ use VendorPatches202211\Symplify\SymplifyKernel\Exception\ShouldNotHappenExcepti
 final class PathResolver
 {
     /**
-     * @see https://regex101.com/r/KhzCSu/1
+     * @see https://regex101.com/r/KhzCSu/2
      * @var string
      */
-    private const VENDOR_PACKAGE_DIRECTORY_REGEX = '#^(?<vendor_package_directory>.*?vendor\\/(\\w|\\.|\\-)+\\/(\\w|\\.|\\-)+)\\/#si';
+    private const VENDOR_PACKAGE_DIRECTORY_REGEX = '#^(?<vendor_package_directory>.*?vendor(?:\\/|\\\)(?:\w|\.|\-)+(?:\\/|\\\)(?:\w|\.|\-)+)(?:\\/|\\\)#si';
     public function resolveVendorDirectory(SmartFileInfo $fileInfo) : string
     {
         $match = Strings::match($fileInfo->getRealPath(), self::VENDOR_PACKAGE_DIRECTORY_REGEX);
